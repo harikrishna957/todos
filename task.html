@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#addtodo").submit(function(e){
+				e.preventDefault();
+				var todo= $("<li>"+$("#todo").val()+"<span> x</span></li>");
+				todo.click(function(){
+					todo.toggleClass("completed");
+				})
+				$("span", todo).click(function(){
+					todo.remove();
+				})
+				$("#todolist").append(todo);
+				$("#todo").val("");
+			});
+			$("#showall").click(function(){
+				$("#todolist li").show();
+			});
+			$("#showcompleted").click(function(){
+				$("#todolist li").hide();
+				$("#todolist li.completed").show();
+			});
+			$("#showactive").click(function(){
+				$("#todolist li").show();
+				$("#todolist li.completed").hide();
+			});
+
+		})
+	</script>
+	<style>
+		.content {
+			width: 600px;
+			margin: auto;
+		}
+		.completed{
+			text-decoration: line-through;
+		}
+	</style>
+	<title>Document</title>
+</head>
+<body>
+	<div class="content">
+		<h3>Todo's list</h3>
+		<form action="" id="addtodo">
+			<input type="text" id="todo">
+		</form>
+		<ol id="todolist">
+
+		</ol>
+		<span id="showall">All</span>
+		<span id="showcompleted">Completed</span>
+		<span id="showactive">Active</span>
+	</div>
+</body>
+</html>
